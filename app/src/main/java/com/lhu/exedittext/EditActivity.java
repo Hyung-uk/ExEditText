@@ -1,6 +1,8 @@
 package com.lhu.exedittext;
 
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -8,19 +10,23 @@ import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class EditActivity extends AppCompatActivity {
     EditText pswdEdit;
+    ImageView imgView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
 
+        imgView = (ImageView) findViewById(R.id.imageView);
         pswdEdit = (EditText) findViewById(R.id.editText2);
         pswdEdit.addTextChangedListener(new TextWatcher() {
             @Override
@@ -56,6 +62,15 @@ public class EditActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void onButtonClicked2(View view) {
+        Drawable d = imgView.getDrawable();
+
+        int level = d.getLevel();
+        level = (level + 1000) % 10000;
+        d.setLevel(level);
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
